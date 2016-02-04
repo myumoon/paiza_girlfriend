@@ -49,30 +49,17 @@
 # 
 
 
-import argparse
+import sys
 
 
 def makeBuyItemlist(own, items):
 	return [x for x in items if x not in own]
 
 def main():
-	parser = argparse.ArgumentParser(description='Find volumes you should buy.')
-	parser.add_argument('args', nargs=argparse.REMAINDER, type=int, help='N M1 x_1 ... x_M1 M2 y_1 ... y_M2')
-	args = parser.parse_args()
-	
-	total    = args.args[0]
-	del args.args[:1]
-	
-	ownNum   = args.args[0]
-	del args.args[:1]
-	ownList  = args.args[0:ownNum]
-	del args.args[:ownNum]
-	#print 'ownList', ownList
-	
-	itemNum  = args.args[0]
-	del args.args[:1]
-	itemList = args.args[:itemNum]
-	#print 'itemList', itemList
+	inputLines = sys.stdin.readlines()
+	total      = int(inputLines[0])
+	ownList    = inputLines[2]
+	itemList   = inputLines[4]
 	
 	buyItemList = makeBuyItemlist(ownList, itemList)
 	if buyItemList == []:
