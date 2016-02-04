@@ -52,10 +52,8 @@
 import argparse
 
 
-#def fetchItemList(list):
-#	"""[個数, ]
-#	"""
-	
+def makeBuyItemlist(own, items):
+	return [x for x in items if x not in own]
 
 def main():
 	parser = argparse.ArgumentParser(description='Find volumes you should buy.')
@@ -76,6 +74,12 @@ def main():
 	itemList = args.args[:itemNum]
 	#print 'itemList', itemList
 	
+	buyItemList = makeBuyItemlist(ownList, itemList)
+	if buyItemList == []:
+		print "None"
+	else:
+		for item in buyItemList:
+			print item,
 
 if __name__ == '__main__':
 	main()
