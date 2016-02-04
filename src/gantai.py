@@ -56,15 +56,17 @@ def makeBuyItemlist(own, items):
 	return [x for x in items if x not in own]
 
 def main():
-	inputLines = sys.stdin.readlines()
-	total      = int(inputLines[0])
-	ownList    = inputLines[2]
-	itemList   = inputLines[4]
+	raw_input()	# 総巻数は捨てる
+	ownNum     = int(raw_input())
+	ownList    = [int(i) for i in raw_input().split()]
+	itemNum    = int(raw_input())
+	itemList   = [int(i) for i in raw_input().split()]
 	
 	buyItemList = makeBuyItemlist(ownList, itemList)
 	if buyItemList == []:
 		print "None"
 	else:
+		buyItemList.sort()
 		for item in buyItemList:
 			print item,
 
